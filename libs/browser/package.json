@@ -1,6 +1,6 @@
 {
   "name": "@micro-sentry/browser",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.1.0",
     "@micro-sentry/core": "^0.0.1"
