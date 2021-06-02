@@ -1,6 +1,6 @@
 # micro-sentry
 
-[![npm version](https://img.shields.io/npm/v/@micro-sentry/core.svg)](https://npmjs.com/package/@micro-sentry/core)
+[![npm version](https://img.shields.io/npm/v/@micro-sentry/angular.svg)](https://npmjs.com/package/@micro-sentry/angular)
 
 **@micro-sentry** is a tiny sentry client to monitor your applications without raising your bundle size.
 

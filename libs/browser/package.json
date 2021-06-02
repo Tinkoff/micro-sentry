@@ -4,5 +4,21 @@
   "dependencies": {
     "tslib": "^2.1.0",
     "@micro-sentry/core": "^0.0.1"
-  }
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "sentry",
+    "log",
+    "angular"
+  ],
+  "authors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>",
+    "Roman Sedov <79601794011@ya.ru>"
+  ],
+  "contributors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>",
+    "Roman Sedov <79601794011@ya.ru>"
+  ],
+  "repository": "https://github.com/TinkoffCreditSystems/micro-sentry",
+  "homepage": "https://github.com/TinkoffCreditSystems/micro-sentry"
 }
