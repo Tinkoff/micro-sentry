@@ -31,14 +31,14 @@ npm i @micro-sentry/browser
 Just add it into `app.module.ts` of your application:
 
 ```typescript
-import {MicroSentryModule} from '@micro-sentry/angular';
+import { MicroSentryModule } from '@micro-sentry/angular';
 
 @NgModule({
-    imports: [
-        MicroSentryModule.forRoot({
-            dsn: 'https://kj12kj1n23@sentry.domain.com/123' 
-        })
-    ]
+  imports: [
+    MicroSentryModule.forRoot({
+      dsn: 'https://kj12kj1n23@sentry.domain.com/123',
+    }),
+  ],
 })
 export class AppModule {}
 ```
@@ -49,7 +49,7 @@ If you do not use Angular framework, you can install `@micro-sentry/browser` mod
 
 ```ts
 const client = new BrowserMicroSentryClient({
-    dsn: 'https://kj12kj1n23@sentry.domain.com/123' 
+  dsn: 'https://kj12kj1n23@sentry.domain.com/123',
 });
 
 try {

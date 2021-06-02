@@ -1,10 +1,10 @@
-import {BrowserMicroSentryClient} from '../services/browser-micro-sentry-client';
+import { BrowserMicroSentryClient } from '../services/browser-micro-sentry-client';
 
 export interface MicroSentryPlugin {
-    client: BrowserMicroSentryClient;
-    destroy?(): void;
+  client: BrowserMicroSentryClient;
+  destroy?(): void;
 }
 
 export interface MicroSentryPluginConstructor extends Function {
-    new (client: BrowserMicroSentryClient): MicroSentryPlugin;
+  new (client: BrowserMicroSentryClient): MicroSentryPlugin;
 }

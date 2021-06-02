@@ -1,4 +1,4 @@
 export interface SentryClientOptions {
-    dsn?: string;
-    environment?: string;
+  dsn?: string;
+  environment?: string;
 }
