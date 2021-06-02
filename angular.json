@@ -164,7 +164,7 @@
         "release": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx build browser --prod", "nx semrel core"],
+            "commands": ["nx build browser --prod", "nx semrel browser"],
             "parallel": false
           }
         }
@@ -233,7 +233,7 @@
         "release": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx build angular --prod", "nx semrel core"],
+            "commands": ["nx build angular --prod", "nx semrel angular"],
             "parallel": false
           }
         }
