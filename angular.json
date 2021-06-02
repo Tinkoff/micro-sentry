@@ -69,6 +69,35 @@
               "libs/core/src/**/*.html"
             ]
           }
+        },
+        "semrel": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/core"
+            },
+            "branches": [
+              "+([0-9])?(.{+([0-9]),x}).x",
+              "main",
+              "next",
+              "next-major",
+              {
+                "name": "beta",
+                "prerelease": true
+              },
+              {
+                "name": "alpha",
+                "prerelease": true
+              }
+            ]
+          }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx build core --prod", "nx semrel core"],
+            "parallel": false
+          }
         }
       }
     },
@@ -109,6 +138,35 @@
               "libs/browser/src/**/*.html"
             ]
           }
+        },
+        "semrel": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/browser"
+            },
+            "branches": [
+              "+([0-9])?(.{+([0-9]),x}).x",
+              "main",
+              "next",
+              "next-major",
+              {
+                "name": "beta",
+                "prerelease": true
+              },
+              {
+                "name": "alpha",
+                "prerelease": true
+              }
+            ]
+          }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx build browser --prod", "nx semrel core"],
+            "parallel": false
+          }
         }
       }
     },
@@ -148,6 +206,35 @@
               "libs/angular/src/**/*.ts",
               "libs/angular/src/**/*.html"
             ]
+          }
+        },
+        "semrel": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/angular"
+            },
+            "branches": [
+              "+([0-9])?(.{+([0-9]),x}).x",
+              "main",
+              "next",
+              "next-major",
+              {
+                "name": "beta",
+                "prerelease": true
+              },
+              {
+                "name": "alpha",
+                "prerelease": true
+              }
+            ]
+          }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx build angular --prod", "nx semrel core"],
+            "parallel": false
           }
         }
       }
