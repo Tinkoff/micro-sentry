@@ -1,0 +1,35 @@
+{
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "micro-sentry",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MWE1ZDc3MzEtMzE1MS00NTBmLTk2OWQtMTQ0MTFjODdlNWVifHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "core": {
+      "tags": []
+    },
+    "browser": {
+      "tags": []
+    },
+    "angular": {
+      "tags": []
+    }
+  }
+}
