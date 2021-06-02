@@ -24,5 +24,8 @@
     "Roman Sedov <79601794011@ya.ru>"
   ],
   "repository": "https://github.com/TinkoffCreditSystems/micro-sentry",
-  "homepage": "https://github.com/TinkoffCreditSystems/micro-sentry"
+  "homepage": "https://github.com/TinkoffCreditSystems/micro-sentry",
+  "publishConfig": {
+    "access": "public"
+  }
 }
