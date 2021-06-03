@@ -11,6 +11,8 @@
   },
   "license": "Apache-2.0",
   "keywords": [
+    "errors",
+    "monitoring",
     "sentry",
     "log",
     "angular"
