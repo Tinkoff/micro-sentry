@@ -28,13 +28,16 @@ export class BreadcrumbPlugin implements MicroSentryPlugin {
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     const xhrproto = XMLHttpRequest.prototype;
 
     fill(xhrproto, 'open', (originalOpen) => {
       return function (...args: any[]): void {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const xhr = this; // tslint:disable-line:no-this-assignment
         const url = args[1];
 
@@ -86,6 +89,7 @@ export class BreadcrumbPlugin implements MicroSentryPlugin {
           xhr.addEventListener('readystatechange', onreadystatechangeHandler);
         }
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         return originalOpen.apply(xhr, args);
       };
@@ -96,10 +100,12 @@ export class BreadcrumbPlugin implements MicroSentryPlugin {
         self.xhrBreadcrumb({
           args,
           startTimestamp: Date.now(),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           xhr: this,
         });
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         return originalSend.apply(this, args);
       };
@@ -107,6 +113,7 @@ export class BreadcrumbPlugin implements MicroSentryPlugin {
   }
 
   initHistory(): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     const oldOnPopState = window.onpopstate;
@@ -126,6 +133,7 @@ export class BreadcrumbPlugin implements MicroSentryPlugin {
       });
 
       if (oldOnPopState) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         return oldOnPopState.apply(this, args);
       }

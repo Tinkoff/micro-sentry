@@ -19,7 +19,7 @@ describe('MiniSentryClient', () => {
 
   it('apiUrl is correct', () => {
     expect(client.apiUrl).toEqual(
-      'https://subdomen.domen.ru.ru/common/sentry/api/52/store/'
+      'https://subdomen.domen.ru/common/sentry/api/52/store/'
     );
   });
 

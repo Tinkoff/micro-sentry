@@ -9,6 +9,7 @@ const __assign =
     const length = arguments.length;
 
     for (let i = 1; i < length; i++) {
+      // eslint-disable-next-line prefer-rest-params
       const source = arguments[i];
 
       for (const property in source) {

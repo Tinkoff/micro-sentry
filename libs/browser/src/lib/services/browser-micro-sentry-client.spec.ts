@@ -150,10 +150,10 @@ describe('BrowserMicroSentryClient', () => {
   });
 
   describe('Data sending', () => {
-    let sendSpy;
+    let sendSpy: jest.SpyInstance;
 
     beforeAll(() => {
-      sendSpy = jest.spyOn<any, any>(
+      sendSpy = jest.spyOn(
         // смотрим за супер Methodом, что бы отлавливать мутации в Methodе дочернего класса
         (client.constructor as any).__proto__.prototype,
         'send'
