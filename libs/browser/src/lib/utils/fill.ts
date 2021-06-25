@@ -15,7 +15,9 @@ export function fill<T, K extends keyof T>(
           value: original,
         },
       });
-    } catch (e) {}
+    } catch (e) {
+      //
+    }
   }
 
   source[name] = wrapped;

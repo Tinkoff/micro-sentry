@@ -41,7 +41,8 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "project": "libs/core/ng-package.json"
+            "project": "libs/core/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
@@ -110,7 +111,8 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "project": "libs/browser/ng-package.json"
+            "project": "libs/browser/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
@@ -179,7 +181,8 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "project": "libs/angular/ng-package.json"
+            "project": "libs/angular/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {

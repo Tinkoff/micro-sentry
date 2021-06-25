@@ -209,7 +209,7 @@ export const CHROME_48_BLOB = {
 
 describe('Tracekit - Original Tests', () => {
   it('should parse Safari 6 error', () => {
-    expect(computeStackTrace(SAFARI_6).stacktrace.frames).toEqual([
+    expect(computeStackTrace(SAFARI_6).stacktrace?.frames).toEqual([
       {
         colno: null,
         filename: '[native code]',
@@ -238,7 +238,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Safari 7 error', () => {
-    expect(computeStackTrace(SAFARI_7).stacktrace.frames).toEqual([
+    expect(computeStackTrace(SAFARI_7).stacktrace?.frames).toEqual([
       {
         colno: 107,
         filename: 'http://path/to/file.js',
@@ -261,7 +261,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Safari 8 error', () => {
-    expect(computeStackTrace(SAFARI_8).stacktrace.frames).toEqual([
+    expect(computeStackTrace(SAFARI_8).stacktrace?.frames).toEqual([
       {
         colno: 23,
         filename: 'http://path/to/file.js',
@@ -284,7 +284,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Firefox 3 error', () => {
-    expect(computeStackTrace(FIREFOX_3).stacktrace.frames).toEqual([
+    expect(computeStackTrace(FIREFOX_3).stacktrace?.frames).toEqual([
       {
         colno: null,
         filename: 'http://127.0.0.1:8000/js/file.js',
@@ -331,7 +331,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Firefox 7 error', () => {
-    expect(computeStackTrace(FIREFOX_7).stacktrace.frames).toEqual([
+    expect(computeStackTrace(FIREFOX_7).stacktrace?.frames).toEqual([
       {
         colno: null,
         filename: 'file:///G:/js/file.js',
@@ -378,7 +378,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Firefox 14 error', () => {
-    expect(computeStackTrace(FIREFOX_14).stacktrace.frames).toEqual([
+    expect(computeStackTrace(FIREFOX_14).stacktrace?.frames).toEqual([
       {
         colno: null,
         filename: 'http://path/to/file.js',
@@ -401,7 +401,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Firefox 31 error', () => {
-    expect(computeStackTrace(FIREFOX_31).stacktrace.frames).toEqual([
+    expect(computeStackTrace(FIREFOX_31).stacktrace?.frames).toEqual([
       {
         colno: 1,
         filename: 'http://path/to/file.js',
@@ -425,7 +425,7 @@ describe('Tracekit - Original Tests', () => {
 
   it('should parse Firefox 44 ns exceptions', () => {
     expect(
-      computeStackTrace(FIREFOX_44_NS_EXCEPTION).stacktrace.frames
+      computeStackTrace(FIREFOX_44_NS_EXCEPTION).stacktrace?.frames
     ).toEqual([
       {
         colno: 1,
@@ -460,7 +460,7 @@ describe('Tracekit - Original Tests', () => {
         message: 'foo',
         name: 'bar',
         stack: 'error\n at Array.forEach (native)',
-      }).stacktrace.frames
+      }).stacktrace?.frames
     ).toEqual([
       {
         colno: null,
@@ -472,7 +472,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Chrome 15 error', () => {
-    expect(computeStackTrace(CHROME_15).stacktrace.frames).toEqual([
+    expect(computeStackTrace(CHROME_15).stacktrace?.frames).toEqual([
       {
         colno: 4,
         filename: 'http://path/to/file.js',
@@ -501,7 +501,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Chrome 36 error with port numbers', () => {
-    expect(computeStackTrace(CHROME_36).stacktrace.frames).toEqual([
+    expect(computeStackTrace(CHROME_36).stacktrace?.frames).toEqual([
       {
         colno: 3651,
         filename: 'http://localhost:8080/file.js',
@@ -524,7 +524,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Chrome error with webpack URLs', () => {
-    expect(computeStackTrace(CHROME_XX_WEBPACK).stacktrace.frames).toEqual([
+    expect(computeStackTrace(CHROME_XX_WEBPACK).stacktrace?.frames).toEqual([
       {
         colno: 30,
         filename: 'webpack:///./~/react-proxy/modules/createPrototypeProxy.js?',
@@ -553,7 +553,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Chrome error with blob URLs', () => {
-    expect(computeStackTrace(CHROME_48_BLOB).stacktrace.frames).toEqual([
+    expect(computeStackTrace(CHROME_48_BLOB).stacktrace?.frames).toEqual([
       {
         colno: 2863,
         filename:
@@ -606,7 +606,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse IE 11 error', () => {
-    expect(computeStackTrace(IE_11).stacktrace.frames).toEqual([
+    expect(computeStackTrace(IE_11).stacktrace?.frames).toEqual([
       {
         colno: 1,
         filename: 'http://path/to/file.js',
@@ -629,7 +629,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Opera 25 error', () => {
-    expect(computeStackTrace(OPERA_25).stacktrace.frames).toEqual([
+    expect(computeStackTrace(OPERA_25).stacktrace?.frames).toEqual([
       {
         colno: 168,
         filename: 'http://path/to/file.js',
@@ -653,7 +653,7 @@ describe('Tracekit - Original Tests', () => {
 
   it('should parse Firefox errors with resource: URLs', () => {
     expect(
-      computeStackTrace(FIREFOX_50_RESOURCE_URL).stacktrace.frames
+      computeStackTrace(FIREFOX_50_RESOURCE_URL).stacktrace?.frames
     ).toEqual([
       {
         colno: 25,
@@ -677,7 +677,7 @@ describe('Tracekit - Original Tests', () => {
   });
 
   it('should parse Firefox errors with eval URLs', () => {
-    expect(computeStackTrace(FIREFOX_43_EVAL).stacktrace.frames).toEqual([
+    expect(computeStackTrace(FIREFOX_43_EVAL).stacktrace?.frames).toEqual([
       {
         colno: 9,
         filename: 'http://localhost:8080/file.js',
@@ -723,7 +723,7 @@ describe('Tracekit - Custom Tests', () => {
 
     expect(
       computeStackTrace(CHROMIUM_EMBEDDED_FRAMEWORK_CUSTOM_SCHEME).stacktrace
-        .frames
+        ?.frames
     ).toEqual([
       {
         colno: 15,
@@ -747,7 +747,7 @@ describe('Tracekit - Custom Tests', () => {
       };
 
       expect(
-        computeStackTrace(CHROME73_NATIVE_CODE_EXCEPTION).stacktrace.frames
+        computeStackTrace(CHROME73_NATIVE_CODE_EXCEPTION).stacktrace?.frames
       ).toEqual([
         {
           colno: 7,
@@ -786,7 +786,7 @@ describe('Tracekit - Custom Tests', () => {
       };
 
       expect(
-        computeStackTrace(FIREFOX66_NATIVE_CODE_EXCEPTION).stacktrace.frames
+        computeStackTrace(FIREFOX66_NATIVE_CODE_EXCEPTION).stacktrace?.frames
       ).toEqual([
         {
           colno: 7,
@@ -820,7 +820,7 @@ describe('Tracekit - Custom Tests', () => {
       };
 
       expect(
-        computeStackTrace(SAFARI12_NATIVE_CODE_EXCEPTION).stacktrace.frames
+        computeStackTrace(SAFARI12_NATIVE_CODE_EXCEPTION).stacktrace?.frames
       ).toEqual([
         {
           colno: 10,
@@ -861,7 +861,7 @@ describe('Tracekit - Custom Tests', () => {
       };
 
       expect(
-        computeStackTrace(EDGE44_NATIVE_CODE_EXCEPTION).stacktrace.frames
+        computeStackTrace(EDGE44_NATIVE_CODE_EXCEPTION).stacktrace?.frames
       ).toEqual([
         {
           colno: 7,

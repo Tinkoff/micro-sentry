@@ -94,7 +94,9 @@ export function computeStackTrace(ex: Error): SentryException {
     if (stack) {
       return stack;
     }
-  } catch (e) {}
+  } catch (e) {
+    //
+  }
 
   return {
     value: extractMessage(ex),

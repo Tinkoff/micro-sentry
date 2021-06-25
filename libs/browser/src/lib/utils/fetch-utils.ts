@@ -45,6 +45,7 @@ export function supportsFetch(): boolean {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function isNativeFetch(func: Function): boolean {
   return (
     func &&
