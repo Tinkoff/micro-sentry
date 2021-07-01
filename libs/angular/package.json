@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "tslib": "^2.1.0",
-    "@micro-sentry/browser": "^2.0.1"
+    "@micro-sentry/browser": "0.0.0-development"
   },
   "license": "Apache-2.0",
   "keywords": [
