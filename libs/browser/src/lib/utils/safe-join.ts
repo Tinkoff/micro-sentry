@@ -1,4 +1,4 @@
-export function safeJoin(input: any[], delimiter: string = ' '): string {
+export function safeJoin(input: any[], delimiter = ' '): string {
   if (!Array.isArray(input)) {
     return '';
   }
