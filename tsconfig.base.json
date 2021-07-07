@@ -10,10 +10,12 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "strict": true,
     "paths": {
       "@micro-sentry/core": ["libs/core/src/index.ts"],
       "@micro-sentry/browser": ["libs/browser/src/index.ts"],

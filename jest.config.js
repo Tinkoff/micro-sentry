@@ -1,1 +1,8 @@
-module.exports = { projects: '<rootDir>/libs/angular' };
+module.exports = {
+  projects: [
+    '<rootDir>/apps/docs',
+    '<rootDir>/libs/core',
+    '<rootDir>/libs/browser',
+    '<rootDir>/libs/angular',
+  ],
+};

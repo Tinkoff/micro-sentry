@@ -1,15 +1,19 @@
 {
+  "npmScope": "micro-sentry",
+  "affected": {
+    "defaultBase": "main"
+  },
   "implicitDependencies": {
+    "angular.json": "*",
     "package.json": {
       "dependencies": "*",
       "devDependencies": "*"
     },
-    ".eslintrc.json": "*"
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
   },
-  "affected": {
-    "defaultBase": "master"
-  },
-  "npmScope": "micro-sentry",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -23,6 +27,9 @@
     }
   },
   "projects": {
+    "docs": {
+      "tags": []
+    },
     "core": {
       "tags": []
     },
