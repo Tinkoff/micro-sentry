@@ -25,7 +25,7 @@ const __assign =
 export class MicroSentryClient {
   readonly authHeader?: string;
   readonly apiUrl?: string;
-  readonly environment?: string;
+  environment?: string;
 
   constructor(options: SentryClientOptions) {
     if (options.dsn) {
