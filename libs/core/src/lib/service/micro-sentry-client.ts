@@ -64,7 +64,7 @@ export class MicroSentryClient {
   }
 
   protected send(request: SentryRequest) {
-    if (!this.apiUrl) {
+    if (!this.apiUrl || !request) {
       return;
     }
 
