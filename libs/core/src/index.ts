@@ -6,3 +6,6 @@ export * from './lib/models/severity';
 
 // service
 export * from './lib/service/micro-sentry-client';
+
+//const
+export * from './lib/consts/consts';

@@ -1,4 +1,4 @@
-import { SentryRequest } from '../models/models';
+import { SentryRequestBody } from '../models/models';
 import { AUTH_HEADER, DSN_REGEXP } from '../consts/consts';
 import { computeStackTrace } from '../helpers/compute-stack-trace';
 import { SentryClientOptions } from '../models/sentry-client-options';
@@ -53,30 +53,34 @@ export class MicroSentryClient {
     this.environment = options.environment;
   }
 
-  prepare(error: Error): SentryRequest {
+  prepare(error: Error): SentryRequestBody {
     return __assign(this.getRequestBlank(), {
       exception: { values: [computeStackTrace(error)] },
     });
   }
 
-  report(error: Error) {
+  report(error: Error): void {
     this.send(this.prepare(error));
   }
 
-  protected send(request: SentryRequest) {
-    if (!this.apiUrl || !request) {
+  protected send(body: SentryRequestBody) {
+    if (!this.apiUrl || !body) {
       return;
     }
 
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('POST', this.apiUrl, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.setRequestHeader(AUTH_HEADER, this.authHeader || '');
-    xhr.send(JSON.stringify(request));
+    this.createRequest(body);
   }
 
-  protected getRequestBlank(): SentryRequest {
+  protected createRequest(body: SentryRequestBody): void {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('POST', this.apiUrl!, true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.setRequestHeader(AUTH_HEADER, this.authHeader || '');
+    xhr.send(JSON.stringify(body));
+  }
+
+  protected getRequestBlank(): SentryRequestBody {
     return {
       platform: 'javascript',
       sdk: {

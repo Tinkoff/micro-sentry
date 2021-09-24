@@ -3,7 +3,7 @@ import {
   Extras,
   User,
   MicroSentryClient,
-  SentryRequest,
+  SentryRequestBody,
   Severity,
   Tags,
 } from '@micro-sentry/core';
@@ -41,7 +41,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
 
     const {
       plugins = [],
-      beforeSend = (req: SentryRequest) => req,
+      beforeSend = (req: SentryRequestBody) => req,
       beforeBreadcrumb = (breadcrumb: Breadcrumb) => breadcrumb,
       blacklistUrls = [],
       ignoreErrors = [],
@@ -150,7 +150,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     });
   }
 
-  isIgnoredError(event: SentryRequest): boolean {
+  isIgnoredError(event: SentryRequestBody): boolean {
     if (!this.ignoreErrors.length) {
       return false;
     }
@@ -160,7 +160,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     );
   }
 
-  protected getRequestBlank(): SentryRequest {
+  protected getRequestBlank(): SentryRequestBody {
     return {
       request: {
         url: this.window.location.toString(),
@@ -173,7 +173,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     };
   }
 
-  protected send(request: SentryRequest) {
+  protected send(request: SentryRequestBody) {
     if (
       this.destroyed ||
       this.isDeniedUrl(request) ||
@@ -187,7 +187,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     this.setBreadcrumbs(undefined);
   }
 
-  private getPossibleEventMessages(event: SentryRequest): string[] {
+  private getPossibleEventMessages(event: SentryRequestBody): string[] {
     if (event.message) {
       return [event.message];
     }
@@ -206,7 +206,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     return [];
   }
 
-  private isDeniedUrl(event: SentryRequest): boolean {
+  private isDeniedUrl(event: SentryRequestBody): boolean {
     if (!this.blacklistUrls.length) {
       return false;
     }
@@ -218,7 +218,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
       : this.blacklistUrls.some((pattern) => isMatchingPattern(url, pattern));
   }
 
-  private getEventFilterUrl(event: SentryRequest): string | null {
+  private getEventFilterUrl(event: SentryRequestBody): string | null {
     try {
       if (event.exception) {
         const frames =
