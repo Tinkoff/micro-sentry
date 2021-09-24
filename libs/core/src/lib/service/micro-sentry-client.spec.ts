@@ -45,12 +45,6 @@ describe('MiniSentryClient', () => {
         ],
       },
       platform: 'javascript',
-      request: {
-        headers: {
-          'User-Agent': expect.any(String),
-        },
-        url: expect.any(String),
-      },
       sdk: {
         name: 'micro-sentry.javascript.browser',
         version: expect.any(String),

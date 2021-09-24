@@ -12,6 +12,10 @@ import { MicroSentryPlugin } from '../models/plugin';
 import { BrowserSentryClientOptions } from '../models/browser-sentry-client-options';
 import { isMatchingPattern } from '../utils/is-matching-pattern';
 
+function getWindow(): Window {
+  return window;
+}
+
 export class BrowserMicroSentryClient extends MicroSentryClient {
   private destroyed = false;
   private readonly plugins: MicroSentryPlugin[];
@@ -29,7 +33,10 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
   >;
   private readonly release?: string;
 
-  constructor(private options: BrowserSentryClientOptions) {
+  constructor(
+    private options: BrowserSentryClientOptions,
+    readonly window: Window = getWindow()
+  ) {
     super(options);
 
     const {
@@ -155,6 +162,12 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
 
   protected getRequestBlank(): SentryRequest {
     return {
+      request: {
+        url: this.window.location.toString(),
+        headers: {
+          'User-Agent': this.window.navigator.userAgent,
+        },
+      },
       ...super.getRequestBlank(),
       ...this.state,
     };

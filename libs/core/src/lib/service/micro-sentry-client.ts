@@ -84,12 +84,6 @@ export class MicroSentryClient {
         version: '0.0.0',
       },
       timestamp: Date.now() / 1000,
-      request: {
-        url: window.location.toString(),
-        headers: {
-          'User-Agent': window.navigator.userAgent,
-        },
-      },
       environment: this.environment,
     };
   }

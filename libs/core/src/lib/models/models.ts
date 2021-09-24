@@ -37,9 +37,9 @@ export interface SentryRequest {
     version: string;
   };
   timestamp: number;
-  request: {
-    url: string;
-    headers: {
+  request?: {
+    url?: string;
+    headers?: {
       'User-Agent': string;
     };
   };
