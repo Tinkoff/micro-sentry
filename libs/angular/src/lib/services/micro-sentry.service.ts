@@ -8,7 +8,8 @@ import { MICRO_SENTRY_CONFIG } from '../tokens/config';
 @Injectable()
 export class MicroSentryService
   extends BrowserMicroSentryClient
-  implements OnDestroy {
+  implements OnDestroy
+{
   constructor(@Inject(MICRO_SENTRY_CONFIG) config: BrowserSentryClientOptions) {
     super(config);
   }
