@@ -2,25 +2,7 @@ import { SentryRequestBody } from '../models/models';
 import { AUTH_HEADER, DSN_REGEXP } from '../consts/consts';
 import { computeStackTrace } from '../helpers/compute-stack-trace';
 import { SentryClientOptions } from '../models/sentry-client-options';
-
-const __assign =
-  Object.assign ||
-  function __assign(target: Record<string, any>) {
-    const length = arguments.length;
-
-    for (let i = 1; i < length; i++) {
-      // eslint-disable-next-line prefer-rest-params
-      const source = arguments[i];
-
-      for (const property in source) {
-        if (Object.prototype.hasOwnProperty.call(source, property)) {
-          target[property] = source[property];
-        }
-      }
-    }
-
-    return target;
-  };
+import { __assign } from 'tslib';
 
 export class MicroSentryClient {
   readonly authHeader?: string;

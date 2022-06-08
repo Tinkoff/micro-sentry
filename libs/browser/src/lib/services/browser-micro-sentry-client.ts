@@ -11,6 +11,7 @@ import { State } from '../models/state';
 import { MicroSentryPlugin } from '../models/plugin';
 import { BrowserSentryClientOptions } from '../models/browser-sentry-client-options';
 import { isMatchingPattern } from '../utils/is-matching-pattern';
+import { __assign } from 'tslib';
 
 function getWindow(): Window {
   return window;
@@ -246,8 +247,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
           ? newStateValue
           : null;
 
-        return {
-          ...acc,
+        return __assign(acc, {
           [key]:
             stateArray || newStateArray
               ? [...(stateArray || []), ...(newStateArray || [])]
@@ -255,7 +255,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
                   ...(typeof stateValue !== 'string' ? stateValue : {}),
                   ...(typeof newStateValue !== 'string' ? newStateValue : {}),
                 },
-        };
+        });
       },
       {}
     );
