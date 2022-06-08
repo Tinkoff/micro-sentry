@@ -3,7 +3,7 @@ import {
   BrowserSentryClientOptions,
 } from '@micro-sentry/browser';
 import { Inject, Injectable, OnDestroy } from '@angular/core';
-import { HttpBackend, HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { MICRO_SENTRY_CONFIG } from '../tokens/config';
 import { WINDOW } from '@ng-web-apis/common';
 import { SentryRequestBody, AUTH_HEADER } from '@micro-sentry/core';
@@ -27,6 +27,7 @@ export class MicroSentryService
 
   createRequest(body: SentryRequestBody) {
     this.http
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       .post(this.apiUrl!, body, {
         headers: { [AUTH_HEADER]: this.authHeader || '' },
       })

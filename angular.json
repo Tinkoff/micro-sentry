@@ -36,7 +36,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -54,7 +53,8 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -84,7 +84,8 @@
           "options": {
             "jestConfig": "apps/docs/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": ["coverage/apps/docs"]
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
@@ -163,7 +164,8 @@
           "options": {
             "jestConfig": "libs/core/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": ["coverage/libs/core"]
         },
         "semrel": {
           "builder": "@ng-builders/semrel:release",
@@ -226,7 +228,8 @@
           "options": {
             "jestConfig": "libs/browser/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": ["coverage/libs/browser"]
         },
         "semrel": {
           "builder": "@ng-builders/semrel:release",
@@ -289,7 +292,8 @@
           "options": {
             "jestConfig": "libs/angular/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": ["coverage/libs/angular"]
         },
         "semrel": {
           "builder": "@ng-builders/semrel:release",
@@ -322,29 +326,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    }
-  },
-  "defaultProject": "docs"
+  }
 }
