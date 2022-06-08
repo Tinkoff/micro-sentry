@@ -29,7 +29,7 @@ export interface User {
   [key: string]: any;
 }
 
-export interface SentryRequest {
+export interface SentryRequestBody {
   exception?: { values: SentryException[] };
   platform: 'javascript';
   sdk: {
@@ -37,9 +37,9 @@ export interface SentryRequest {
     version: string;
   };
   timestamp: number;
-  request: {
-    url: string;
-    headers: {
+  request?: {
+    url?: string;
+    headers?: {
       'User-Agent': string;
     };
   };

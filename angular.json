@@ -15,7 +15,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/docs",
+            "outputPath": "dist/docs/browser",
             "index": "apps/docs/src/index.html",
             "main": "apps/docs/src/main.ts",
             "polyfills": "apps/docs/src/polyfills.ts",
@@ -84,6 +84,51 @@
           "options": {
             "jestConfig": "apps/docs/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/docs/server",
+            "main": "apps/docs/server.ts",
+            "tsConfig": "apps/docs/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/docs/src/environments/environment.ts",
+                  "with": "apps/docs/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "docs:build",
+            "serverTarget": "docs:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "docs:build:production",
+              "serverTarget": "docs:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "docs:build:production",
+            "serverTarget": "docs:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

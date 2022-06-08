@@ -3,7 +3,7 @@ import {
   Extras,
   User,
   MicroSentryClient,
-  SentryRequest,
+  SentryRequestBody,
   Severity,
   Tags,
 } from '@micro-sentry/core';
@@ -11,6 +11,11 @@ import { State } from '../models/state';
 import { MicroSentryPlugin } from '../models/plugin';
 import { BrowserSentryClientOptions } from '../models/browser-sentry-client-options';
 import { isMatchingPattern } from '../utils/is-matching-pattern';
+import { __assign } from 'tslib';
+
+function getWindow(): Window {
+  return window;
+}
 
 export class BrowserMicroSentryClient extends MicroSentryClient {
   private destroyed = false;
@@ -29,12 +34,15 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
   >;
   private readonly release?: string;
 
-  constructor(private options: BrowserSentryClientOptions) {
+  constructor(
+    private options: BrowserSentryClientOptions,
+    readonly window: Window = getWindow()
+  ) {
     super(options);
 
     const {
       plugins = [],
-      beforeSend = (req: SentryRequest) => req,
+      beforeSend = (req: SentryRequestBody) => req,
       beforeBreadcrumb = (breadcrumb: Breadcrumb) => breadcrumb,
       blacklistUrls = [],
       ignoreErrors = [],
@@ -143,7 +151,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     });
   }
 
-  isIgnoredError(event: SentryRequest): boolean {
+  isIgnoredError(event: SentryRequestBody): boolean {
     if (!this.ignoreErrors.length) {
       return false;
     }
@@ -153,14 +161,20 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     );
   }
 
-  protected getRequestBlank(): SentryRequest {
+  protected getRequestBlank(): SentryRequestBody {
     return {
+      request: {
+        url: this.window.location.toString(),
+        headers: {
+          'User-Agent': this.window.navigator.userAgent,
+        },
+      },
       ...super.getRequestBlank(),
       ...this.state,
     };
   }
 
-  protected send(request: SentryRequest) {
+  protected send(request: SentryRequestBody) {
     if (
       this.destroyed ||
       this.isDeniedUrl(request) ||
@@ -174,7 +188,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     this.setBreadcrumbs(undefined);
   }
 
-  private getPossibleEventMessages(event: SentryRequest): string[] {
+  private getPossibleEventMessages(event: SentryRequestBody): string[] {
     if (event.message) {
       return [event.message];
     }
@@ -193,7 +207,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     return [];
   }
 
-  private isDeniedUrl(event: SentryRequest): boolean {
+  private isDeniedUrl(event: SentryRequestBody): boolean {
     if (!this.blacklistUrls.length) {
       return false;
     }
@@ -205,7 +219,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
       : this.blacklistUrls.some((pattern) => isMatchingPattern(url, pattern));
   }
 
-  private getEventFilterUrl(event: SentryRequest): string | null {
+  private getEventFilterUrl(event: SentryRequestBody): string | null {
     try {
       if (event.exception) {
         const frames =
@@ -233,8 +247,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
           ? newStateValue
           : null;
 
-        return {
-          ...acc,
+        return __assign(acc, {
           [key]:
             stateArray || newStateArray
               ? [...(stateArray || []), ...(newStateArray || [])]
@@ -242,7 +255,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
                   ...(typeof stateValue !== 'string' ? stateValue : {}),
                   ...(typeof newStateValue !== 'string' ? newStateValue : {}),
                 },
-        };
+        });
       },
       {}
     );
