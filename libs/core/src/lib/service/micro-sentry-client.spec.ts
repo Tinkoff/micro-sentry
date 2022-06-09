@@ -46,7 +46,7 @@ describe('MiniSentryClient', () => {
       },
       platform: 'javascript',
       sdk: {
-        name: 'micro-sentry.javascript.browser',
+        name: 'micro-sentry.javascript.core',
         version: expect.any(String),
       },
       timestamp: expect.any(Number),

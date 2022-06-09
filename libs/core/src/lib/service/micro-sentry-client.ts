@@ -66,7 +66,7 @@ export class MicroSentryClient {
     return {
       platform: 'javascript',
       sdk: {
-        name: 'micro-sentry.javascript.browser',
+        name: 'micro-sentry.javascript.core',
         version: '0.0.0',
       },
       timestamp: Date.now() / 1000,

@@ -34,6 +34,16 @@ export class MicroSentryService
       .subscribe();
   }
 
+  protected getRequestBlank(): SentryRequestBody {
+    return {
+      ...super.getRequestBlank(),
+      sdk: {
+        name: 'micro-sentry.javascript.angular',
+        version: '0.0.0',
+      },
+    };
+  }
+
   ngOnDestroy(): void {
     this.destroy();
   }
