@@ -21,22 +21,9 @@
         "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "MWE1ZDc3MzEtMzE1MS00NTBmLTk2OWQtMTQ0MTFjODdlNWVifHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
-        "showUsageWarnings": true
+        "showUsageWarnings": true,
+        "parallel": 1
       }
-    }
-  },
-  "projects": {
-    "angular": {
-      "tags": []
-    },
-    "browser": {
-      "tags": []
-    },
-    "core": {
-      "tags": []
-    },
-    "docs": {
-      "tags": []
     }
   },
   "cli": {

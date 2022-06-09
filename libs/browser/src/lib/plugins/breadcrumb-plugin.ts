@@ -195,7 +195,7 @@ export class BreadcrumbPlugin implements MicroSentryPlugin {
     try {
       target = event.target
         ? htmlTreeAsString(event.target as Node)
-        : htmlTreeAsString((event as unknown) as Node);
+        : htmlTreeAsString(event as unknown as Node);
     } catch (e) {
       target = '<unknown>';
     }
@@ -305,14 +305,9 @@ export class BreadcrumbPlugin implements MicroSentryPlugin {
   }
 
   private initConsole() {
-    ([
-      'debug',
-      'info',
-      'warn',
-      'error',
-      'log',
-      'assert',
-    ] as (keyof Console)[]).forEach((level) => {
+    (
+      ['debug', 'info', 'warn', 'error', 'log', 'assert'] as (keyof Console)[]
+    ).forEach((level) => {
       if (!(level in window.console)) {
         return;
       }
