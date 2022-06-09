@@ -10,7 +10,8 @@ import { MICRO_SENTRY_ERRORS_THROTTLE } from '../tokens/errors-throttle';
 
 @Injectable()
 export class MicroSentryErrorBusService
-  implements NextObserver<any>, OnDestroy {
+  implements NextObserver<any>, OnDestroy
+{
   private _errors$ = new Subject<any>();
   errors$: Observable<any>;
 

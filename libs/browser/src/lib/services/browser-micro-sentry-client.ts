@@ -161,7 +161,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     );
   }
 
-  protected getRequestBlank(): SentryRequestBody {
+  protected override getRequestBlank(): SentryRequestBody {
     return {
       request: {
         url: this.window.location.toString(),
@@ -178,7 +178,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
     };
   }
 
-  protected send(request: SentryRequestBody) {
+  protected override send(request: SentryRequestBody) {
     if (
       this.destroyed ||
       this.isDeniedUrl(request) ||

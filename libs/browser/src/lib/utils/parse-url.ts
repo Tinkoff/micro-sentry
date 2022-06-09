@@ -1,6 +1,4 @@
-export function parseUrl(
-  url: string
-): {
+export function parseUrl(url: string): {
   host?: string;
   path?: string;
   protocol?: string;

@@ -26,7 +26,7 @@ export class MicroSentryService
     this.http = new HttpClient(httpBackend);
   }
 
-  createRequest(body: SentryRequestBody) {
+  override createRequest(body: SentryRequestBody) {
     this.http
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       .post(this.apiUrl!, body, {
@@ -35,7 +35,7 @@ export class MicroSentryService
       .subscribe();
   }
 
-  protected getRequestBlank(): SentryRequestBody {
+  protected override getRequestBlank(): SentryRequestBody {
     return {
       ...super.getRequestBlank(),
       sdk: {
