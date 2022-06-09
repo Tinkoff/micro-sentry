@@ -26,9 +26,6 @@
       }
     }
   },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
   "defaultProject": "docs",
   "generators": {
     "@nrwl/angular": {
@@ -63,5 +60,6 @@
         "projects": "dependencies"
       }
     ]
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }

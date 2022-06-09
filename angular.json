@@ -2,6 +2,7 @@
   "version": 1,
   "projects": {
     "angular": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/angular",
       "sourceRoot": "libs/angular/src",
@@ -29,7 +30,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/angular/jest.config.js",
+            "jestConfig": "libs/angular/jest.config.ts",
             "passWithNoTests": true
           },
           "outputs": ["coverage/libs/angular"]
@@ -70,6 +71,7 @@
       "tags": []
     },
     "browser": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/browser",
       "sourceRoot": "libs/browser/src",
@@ -97,7 +99,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/browser/jest.config.js",
+            "jestConfig": "libs/browser/jest.config.ts",
             "passWithNoTests": true
           },
           "outputs": ["coverage/libs/browser"]
@@ -138,6 +140,7 @@
       "tags": []
     },
     "core": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/core",
       "sourceRoot": "libs/core/src",
@@ -165,7 +168,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/core/jest.config.js",
+            "jestConfig": "libs/core/jest.config.ts",
             "passWithNoTests": true
           },
           "outputs": ["coverage/libs/core"]
@@ -206,6 +209,7 @@
       "tags": []
     },
     "docs": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -292,7 +296,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/docs/jest.config.js",
+            "jestConfig": "apps/docs/jest.config.ts",
             "passWithNoTests": true
           },
           "outputs": ["coverage/apps/docs"]
