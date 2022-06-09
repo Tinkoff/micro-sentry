@@ -29,17 +29,17 @@ export interface User {
   [key: string]: any;
 }
 
-export interface SentryRequest {
+export interface SentryRequestBody {
   exception?: { values: SentryException[] };
   platform: 'javascript';
   sdk: {
-    name: 'micro-sentry.javascript.browser';
+    name: string;
     version: string;
   };
   timestamp: number;
-  request: {
-    url: string;
-    headers: {
+  request?: {
+    url?: string;
+    headers?: {
       'User-Agent': string;
     };
   };
