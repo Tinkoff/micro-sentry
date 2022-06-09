@@ -170,6 +170,10 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
         },
       },
       ...super.getRequestBlank(),
+      sdk: {
+        name: 'micro-sentry.javascript.browser',
+        version: '0.0.0',
+      },
       ...this.state,
     };
   }

@@ -33,7 +33,7 @@ export interface SentryRequestBody {
   exception?: { values: SentryException[] };
   platform: 'javascript';
   sdk: {
-    name: 'micro-sentry.javascript.browser';
+    name: string;
     version: string;
   };
   timestamp: number;
