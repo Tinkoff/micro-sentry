@@ -1,177 +1,44 @@
 {
   "version": 1,
   "projects": {
-    "docs": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "less"
-        }
-      },
-      "root": "apps/docs",
-      "sourceRoot": "apps/docs/src",
-      "prefix": "micro-sentry",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/docs/browser",
-            "index": "apps/docs/src/index.html",
-            "main": "apps/docs/src/main.ts",
-            "polyfills": "apps/docs/src/polyfills.ts",
-            "tsConfig": "apps/docs/tsconfig.app.json",
-            "aot": true,
-            "assets": ["apps/docs/src/favicon.ico", "apps/docs/src/assets"],
-            "styles": ["apps/docs/src/styles.less"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/docs/src/environments/environment.ts",
-                  "with": "apps/docs/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          },
-          "outputs": ["{options.outputPath}"]
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "docs:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "docs:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "docs:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/docs/src/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/docs/jest.config.js",
-            "passWithNoTests": true
-          },
-          "outputs": ["coverage/apps/docs"]
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/docs/server",
-            "main": "apps/docs/server.ts",
-            "tsConfig": "apps/docs/tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/docs/src/environments/environment.ts",
-                  "with": "apps/docs/src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "options": {
-            "browserTarget": "docs:build",
-            "serverTarget": "docs:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "docs:build:production",
-              "serverTarget": "docs:server:production"
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "docs:build:production",
-            "serverTarget": "docs:server:production",
-            "routes": ["/"]
-          },
-          "configurations": {
-            "production": {}
-          }
-        }
-      }
-    },
-    "core": {
+    "angular": {
       "projectType": "library",
-      "root": "libs/core",
-      "sourceRoot": "libs/core/src",
+      "root": "libs/angular",
+      "sourceRoot": "libs/angular/src",
       "prefix": "micro-sentry",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/core/tsconfig.lib.json",
-            "project": "libs/core/ng-package.json",
+            "tsConfig": "libs/angular/tsconfig.lib.json",
+            "project": "libs/angular/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/core/tsconfig.lib.prod.json"
+              "tsConfig": "libs/angular/tsconfig.lib.prod.json"
             }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/core/src/**/*.ts"]
+            "lintFilePatterns": ["libs/angular/src/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/core/jest.config.js",
+            "jestConfig": "libs/angular/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/core"]
+          "outputs": ["coverage/libs/angular"]
         },
         "semrel": {
           "builder": "@ng-builders/semrel:release",
           "options": {
             "npm": {
-              "pkgRoot": "dist/libs/core"
+              "pkgRoot": "dist/libs/angular"
             },
             "branches": [
               "+([0-9])?(.{+([0-9]),x}).x",
@@ -192,7 +59,10 @@
         "release": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx build core --prod", "nx semrel core"],
+            "commands": [
+              "nx build angular --configuration production",
+              "nx semrel angular"
+            ],
             "parallel": false
           }
         }
@@ -256,50 +126,53 @@
         "release": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx build browser --prod", "nx semrel browser"],
+            "commands": [
+              "nx build browser --configuration production",
+              "nx semrel browser"
+            ],
             "parallel": false
           }
         }
       }
     },
-    "angular": {
+    "core": {
       "projectType": "library",
-      "root": "libs/angular",
-      "sourceRoot": "libs/angular/src",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
       "prefix": "micro-sentry",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/angular/tsconfig.lib.json",
-            "project": "libs/angular/ng-package.json",
+            "tsConfig": "libs/core/tsconfig.lib.json",
+            "project": "libs/core/ng-package.json",
             "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/angular/tsconfig.lib.prod.json"
+              "tsConfig": "libs/core/tsconfig.lib.prod.json"
             }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/angular/src/**/*.ts"]
+            "lintFilePatterns": ["libs/core/src/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/angular/jest.config.js",
+            "jestConfig": "libs/core/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/angular"]
+          "outputs": ["coverage/libs/core"]
         },
         "semrel": {
           "builder": "@ng-builders/semrel:release",
           "options": {
             "npm": {
-              "pkgRoot": "dist/libs/angular"
+              "pkgRoot": "dist/libs/core"
             },
             "branches": [
               "+([0-9])?(.{+([0-9]),x}).x",
@@ -320,8 +193,153 @@
         "release": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx build angular --prod", "nx semrel angular"],
+            "commands": [
+              "nx build core --configuration production",
+              "nx semrel core"
+            ],
             "parallel": false
+          }
+        }
+      }
+    },
+    "docs": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "apps/docs",
+      "sourceRoot": "apps/docs/src",
+      "prefix": "micro-sentry",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/docs/browser",
+            "index": "apps/docs/src/index.html",
+            "main": "apps/docs/src/main.ts",
+            "polyfills": "apps/docs/src/polyfills.ts",
+            "tsConfig": "apps/docs/tsconfig.app.json",
+            "assets": ["apps/docs/src/favicon.ico", "apps/docs/src/assets"],
+            "styles": ["apps/docs/src/styles.less"],
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/docs/src/environments/environment.ts",
+                  "with": "apps/docs/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          },
+          "outputs": ["{options.outputPath}"],
+          "defaultConfiguration": ""
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "docs:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "docs:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "docs:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/docs/src/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/docs/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/apps/docs"]
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/docs/server",
+            "main": "apps/docs/server.ts",
+            "tsConfig": "apps/docs/tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/docs/src/environments/environment.ts",
+                  "with": "apps/docs/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          },
+          "defaultConfiguration": ""
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "docs:build",
+            "serverTarget": "docs:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "docs:build:production",
+              "serverTarget": "docs:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "docs:build:production",
+            "serverTarget": "docs:server:production",
+            "routes": ["/"]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }

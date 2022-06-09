@@ -12,8 +12,7 @@ import { IS_BROWSER_PLATFORM, IS_SERVER_PLATFORM } from '@ngx-ssr/platform';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     MicroSentryModule.forRoot({
-      dsn:
-        'https://099f64b67a9d4f61985dc20cfc57ca99@o275325.ingest.sentry.io/6484556',
+      dsn: 'https://099f64b67a9d4f61985dc20cfc57ca99@o275325.ingest.sentry.io/6484556',
     }),
   ],
   providers: [],
