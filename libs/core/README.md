@@ -43,6 +43,12 @@ import { MicroSentryModule } from '@micro-sentry/angular';
 export class AppModule {}
 ```
 
+| Angular version | Micro-sentry version        |
+| --------------- | --------------------------- |
+| Angular >= 12   | `@micro-sentry/angular@4.x` |
+| Angular >= 11   | `@micro-sentry/angular@3.x` |
+| Angular >= 10   | `@micro-sentry/angular@2.x` |
+
 ### Javascript / Typescript
 
 If you do not use Angular framework, you can install `@micro-sentry/browser` module to create client manually.

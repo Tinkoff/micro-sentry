@@ -17,9 +17,9 @@
     "baseUrl": ".",
     "strict": true,
     "paths": {
-      "@micro-sentry/core": ["libs/core/src/index.ts"],
+      "@micro-sentry/angular": ["libs/angular/src/index.ts"],
       "@micro-sentry/browser": ["libs/browser/src/index.ts"],
-      "@micro-sentry/angular": ["libs/angular/src/index.ts"]
+      "@micro-sentry/core": ["libs/core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -21,22 +21,21 @@
         "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "MWE1ZDc3MzEtMzE1MS00NTBmLTk2OWQtMTQ0MTFjODdlNWVifHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
-        "showUsageWarnings": true,
-        "strictlyOrderedTargets": ["build", "release"]
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {
-    "docs": {
-      "tags": []
-    },
-    "core": {
+    "angular": {
       "tags": []
     },
     "browser": {
       "tags": []
     },
-    "angular": {
+    "core": {
+      "tags": []
+    },
+    "docs": {
       "tags": []
     }
   },
@@ -63,5 +62,19 @@
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "release": [
+      {
+        "target": "release",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

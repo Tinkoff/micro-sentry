@@ -12,7 +12,8 @@ import { SentryRequestBody, AUTH_HEADER } from '@micro-sentry/core';
 @Injectable()
 export class MicroSentryService
   extends BrowserMicroSentryClient
-  implements OnDestroy {
+  implements OnDestroy
+{
   private http: HttpClient;
 
   constructor(
