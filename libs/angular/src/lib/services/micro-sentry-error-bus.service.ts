@@ -8,7 +8,7 @@ import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { groupBy, mergeMap } from 'rxjs/operators';
 import { MICRO_SENTRY_ERRORS_THROTTLE } from '../tokens/errors-throttle';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MicroSentryErrorBusService
   implements NextObserver<any>, OnDestroy
 {
