@@ -7,13 +7,21 @@
 
 ## Why is it better than default sentry client?
 
-👜 **It is small**. So, it is at most [1.9 KB](https://bundlephobia.com/result?p=@micro-sentry/angular) size instead of [25 KB](https://bundlephobia.com/result?p=@sentry/angular) by default client but has all the essential functionality
+👜 **It is small**. So, it is at most [1.9 KB](https://bundlephobia.com/result?p=@micro-sentry/angular) size instead of [22.5 KB](https://bundlephobia.com/result?p=@sentry/angular) by default client but has all the essential functionality
 
 🛠 **It is easy to set up**. There is a lightweight wrapper for Angular and a browser tool for other frameworks or vanilla.
 
 ## Installation
 
 Angular:
+
+| Micro-sentry version | Angular version |
+| -------------------- | --------------- |
+| `>= 6`               | `>= 14`         |
+| `>= 5`               | `>= 13`         |
+| `>= 4`               | `>= 12`         |
+| `>= 3`               | `>= 11`         |
+| `>= 2`               | `>= 10`         |
 
 ```
 npm i @micro-sentry/angular
