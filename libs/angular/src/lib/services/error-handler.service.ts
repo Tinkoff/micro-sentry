@@ -2,7 +2,7 @@ import { ErrorHandler, Injectable } from '@angular/core';
 import { MicroSentryErrorBusService } from './micro-sentry-error-bus.service';
 import { MicroSentryService } from './micro-sentry.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MicroSentryErrorHandler implements ErrorHandler {
   constructor(
     private errorBus: MicroSentryErrorBusService,

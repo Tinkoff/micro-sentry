@@ -9,7 +9,7 @@ import { WINDOW } from '@ng-web-apis/common';
 import { SentryRequestBody, AUTH_HEADER } from '@micro-sentry/core';
 
 // @dynamic
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MicroSentryService
   extends BrowserMicroSentryClient
   implements OnDestroy
