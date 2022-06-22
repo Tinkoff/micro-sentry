@@ -10,7 +10,7 @@ export class MicroSentryClient {
   readonly environment?: string;
 
   constructor(options: SentryClientOptions) {
-    if (options.dsn) {
+    if (options && options.dsn) {
       const searched = DSN_REGEXP.exec(options.dsn);
       const dsn = searched ? searched.slice(1) : [];
       const pathWithProjectId = dsn[5].split('/');
@@ -32,7 +32,7 @@ export class MicroSentryClient {
         (dsn[2] ? ',sentry_secret=' + dsn[2] : '');
     }
 
-    this.environment = options.environment;
+    this.environment = options && options.environment;
   }
 
   prepare(error: Error): SentryRequestBody {
