@@ -1,4 +1,4 @@
-export const enum Severity {
+export enum Severity {
   fatal = 'fatal',
   error = 'error',
   warning = 'warning',
