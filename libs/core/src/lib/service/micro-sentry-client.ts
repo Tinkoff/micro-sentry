@@ -2,7 +2,6 @@ import { SentryRequestBody } from '../models/models';
 import { AUTH_HEADER, DSN_REGEXP } from '../consts/consts';
 import { computeStackTrace } from '../helpers/compute-stack-trace';
 import { SentryClientOptions } from '../models/sentry-client-options';
-import { __assign } from 'tslib';
 
 export class MicroSentryClient {
   readonly authHeader?: string;
@@ -36,9 +35,10 @@ export class MicroSentryClient {
   }
 
   prepare(error: Error): SentryRequestBody {
-    return __assign(this.getRequestBlank(), {
+    return {
+      ...this.getRequestBlank(),
       exception: { values: [computeStackTrace(error)] },
-    });
+    };
   }
 
   report(error: Error): void {
