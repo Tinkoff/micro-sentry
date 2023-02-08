@@ -242,7 +242,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
   private extendState(newState: Partial<State>) {
     this._state = (Object.keys(newState) as (keyof State)[]).reduce(
       (acc, key) => {
-        const stateValue = this.state[key];
+        const stateValue = this._state[key];
         const stateArray = Array.isArray(stateValue) ? stateValue : null;
 
         const newStateValue = newState[key];
@@ -261,7 +261,7 @@ export class BrowserMicroSentryClient extends MicroSentryClient {
                 },
         };
       },
-      {}
+      this._state
     );
   }
 
