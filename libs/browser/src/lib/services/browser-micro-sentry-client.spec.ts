@@ -71,6 +71,100 @@ describe('BrowserMicroSentryClient', () => {
     });
   });
 
+  describe('Mix Tags Extras and User', () => {
+    it('Methods setTag with setExtras set tags and extras', () => {
+      client.setTags({ test: 'tag' });
+      expect(client.state).toEqual({ tags: { test: 'tag' } });
+
+      client.setExtras({ tag: 'test' });
+
+      expect(client.state).toEqual({
+        tags: { test: 'tag' },
+        extra: { tag: 'test' },
+      });
+    });
+
+    it('Methods setTag with setUser set tags and user', () => {
+      client.setTags({ test: 'tag' });
+      expect(client.state).toEqual({ tags: { test: 'tag' } });
+
+      client.setUser({ username: 'test' });
+
+      expect(client.state).toEqual({
+        tags: { test: 'tag' },
+        user: { username: 'test' },
+      });
+    });
+
+    it('Methods setExtras with setTag set tags and extras', () => {
+      client.setExtras({ tag: 'test' });
+      expect(client.state).toEqual({ extra: { tag: 'test' } });
+
+      client.setTags({ test: 'tag' });
+
+      expect(client.state).toEqual({
+        tags: { test: 'tag' },
+        extra: { tag: 'test' },
+      });
+    });
+
+    it('Methods setExtras with setUser set user and extras', () => {
+      client.setExtras({ tag: 'test' });
+      expect(client.state).toEqual({ extra: { tag: 'test' } });
+
+      client.setUser({ username: 'test' });
+
+      expect(client.state).toEqual({
+        user: { username: 'test' },
+        extra: { tag: 'test' },
+      });
+    });
+
+    it('Methods setUser with setExtra set extras and user', () => {
+      client.setUser({ username: 'test' });
+      expect(client.state).toEqual({ user: { username: 'test' } });
+
+      client.setExtras({ tag: 'test' });
+      expect(client.state).toEqual({
+        user: { username: 'test' },
+        extra: { tag: 'test' },
+      });
+    });
+
+    it('Methods setUser with setTag set tag and user', () => {
+      client.setUser({ username: 'test' });
+      expect(client.state).toEqual({ user: { username: 'test' } });
+
+      client.setTags({ test: 'tag' });
+      expect(client.state).toEqual({
+        user: { username: 'test' },
+        tags: { test: 'tag' },
+      });
+    });
+
+    it('Methods setUser with setTags with setExtra work together', () => {
+      client.setUser({ username: 'test' });
+      expect(client.state).toEqual({ user: { username: 'test' } });
+
+      client.setTags({ test: 'tag' });
+      expect(client.state).toEqual({
+        user: { username: 'test' },
+        tags: { test: 'tag' },
+      });
+
+      client.setExtras({ tag: 'test' });
+      expect(client.state).toEqual({
+        user: { username: 'test' },
+        tags: { test: 'tag' },
+        extra: { tag: 'test' },
+      });
+    });
+
+    afterEach(() => {
+      client.clearState();
+    });
+  });
+
   describe('Breadcrumbs', () => {
     it('Method addBreadcrumb adds them', () => {
       client.addBreadcrumb({
