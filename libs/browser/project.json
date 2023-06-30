@@ -1,0 +1,69 @@
+{
+  "name": "browser",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/browser/src",
+  "prefix": "micro-sentry",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "options": {
+        "tsConfig": "libs/browser/tsconfig.lib.json",
+        "project": "libs/browser/ng-package.json",
+        "updateBuildableProjectDepsInPackageJson": false
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/browser/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/browser/src/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/browser/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "outputs": ["{workspaceRoot}/coverage/libs/browser"]
+    },
+    "semrel": {
+      "executor": "@ng-builders/semrel:release",
+      "options": {
+        "npm": {
+          "pkgRoot": "dist/libs/browser"
+        },
+        "branches": [
+          "+([0-9])?(.{+([0-9]),x}).x",
+          "main",
+          "next",
+          "next-major",
+          {
+            "name": "beta",
+            "prerelease": true
+          },
+          {
+            "name": "alpha",
+            "prerelease": true
+          }
+        ]
+      }
+    },
+    "release": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build browser --configuration production",
+          "nx semrel browser"
+        ],
+        "parallel": false
+      }
+    }
+  },
+  "tags": []
+}
